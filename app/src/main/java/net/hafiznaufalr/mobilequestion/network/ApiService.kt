@@ -3,7 +3,7 @@ package net.hafiznaufalr.mobilequestion.network
 import kotlinx.coroutines.Deferred
 import net.hafiznaufalr.mobilequestion.model.Model
 import net.hafiznaufalr.mobilequestion.model.Model.MovieResponse
-import net.hafiznaufalr.mobilequestion.model.Model.Detail
+import net.hafiznaufalr.mobilequestion.model.Model.Movie
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
@@ -33,5 +33,5 @@ interface ApiService {
     fun getDetailMovie(
         @Path("movie_id") movieId: Int,
         @Query("api_key") apiKey: String
-    ): Deferred<Detail>
+    ): Deferred<Movie>
 }

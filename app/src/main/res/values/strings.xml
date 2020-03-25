@@ -12,6 +12,10 @@
     <string name="now_playing">Now Playing</string>
     <string name="overview">Overview</string>
     <string name="action_to_favorite">action to favorite</string>
+    <string name="remove_favorite">Remove From Favorite</string>
+    <string name="add_favorite">Add To Favorite</string>
+    <string name="fav_movie">Favorite Movie</string>
+    <string name="tv_null">Belum Ada Data Favorite</string>
 
     <string-array name="value">
         <item>Popular</item>

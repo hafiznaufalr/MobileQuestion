@@ -10,6 +10,7 @@ import net.hafiznaufalr.mobilequestion.db.MovieContract.MovieColumns.Companion.P
 import net.hafiznaufalr.mobilequestion.db.MovieContract.MovieColumns.Companion.RELEASEDATE
 import net.hafiznaufalr.mobilequestion.db.MovieContract.MovieColumns.Companion.TITLE
 import net.hafiznaufalr.mobilequestion.model.Model.Movie
+
 import java.sql.SQLException
 
 class MovieHelper(context: Context) {
@@ -55,8 +56,8 @@ class MovieHelper(context: Context) {
                 movie = Movie(
                     cursor.getInt(cursor.getColumnIndexOrThrow(ID)),
                     cursor.getString(cursor.getColumnIndexOrThrow(OVERVIEW)),
-                    cursor.getString(cursor.getColumnIndexOrThrow(RELEASEDATE)),
                     cursor.getString(cursor.getColumnIndexOrThrow(POSTER)),
+                    cursor.getString(cursor.getColumnIndexOrThrow(RELEASEDATE)),
                     cursor.getString(cursor.getColumnIndexOrThrow(TITLE))
 
                 )
@@ -70,7 +71,7 @@ class MovieHelper(context: Context) {
         return arrayList
     }
 
-    fun isMovieFavorited(id: String): Boolean {
+    fun isMovieFavorited(id: Int): Boolean {
         val cursor = database.query(
             DATABASE_TABLE,
             null, "$ID = '$id'", null, null, null,
@@ -88,15 +89,14 @@ class MovieHelper(context: Context) {
         val args = ContentValues()
         args.put(ID, movie.id)
         args.put(OVERVIEW, movie.overview)
-        args.put(RELEASEDATE, movie.releaseDate)
         args.put(POSTER, movie.posterPath)
+        args.put(RELEASEDATE, movie.releaseDate)
         args.put(TITLE, movie.title)
-
 
         return database.insert(DATABASE_TABLE, null, args)
     }
 
-    fun deleteMovie(id: String): Int {
+    fun deleteMovie(id: Int): Int {
         return database.delete(MovieContract().TABLE_MOVIE, "$ID = '$id'", null)
     }
 

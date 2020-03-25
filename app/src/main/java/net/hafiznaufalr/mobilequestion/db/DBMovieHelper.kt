@@ -21,8 +21,8 @@ class DBHelper(context: Context) :
         MovieContract().TABLE_MOVIE,
         MovieContract.MovieColumns.ID,
         MovieContract.MovieColumns.OVERVIEW,
-        MovieContract.MovieColumns.RELEASEDATE,
         MovieContract.MovieColumns.POSTER,
+        MovieContract.MovieColumns.RELEASEDATE,
         MovieContract.MovieColumns.TITLE
 
     )

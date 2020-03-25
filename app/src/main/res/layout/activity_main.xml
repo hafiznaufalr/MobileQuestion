@@ -15,40 +15,38 @@
             android:id="@+id/tv_category"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/category"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            android:textColor="@android:color/black"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginStart="8dp" />
+            android:text="@string/category"
+            android:textColor="@android:color/black"
+            android:textSize="18sp"
+            android:textStyle="bold" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_movie"
-            android:layout_below="@id/tv_category"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_below="@id/tv_category"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             tools:listitem="@layout/item_movie" />
-
 
         <Button
             android:id="@+id/btn_category"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="CATEGORY"
-            android:background="@color/colorPrimary"
-            android:textColor="@android:color/white"
             android:layout_alignParentBottom="true"
-            />
+            android:background="@color/colorPrimary"
+            android:text="@string/category"
+            android:textColor="@android:color/white" />
 
         <Spinner
+
             android:id="@+id/spinner_category"
             android:layout_width="match_parent"
             android:layout_height="10dp"
             android:layout_alignParentBottom="true" />
-
     </RelativeLayout>
 
 </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

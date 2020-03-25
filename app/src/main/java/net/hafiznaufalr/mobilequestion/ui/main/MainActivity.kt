@@ -88,9 +88,7 @@ class MainActivity : AppCompatActivity(), MainView {
                 tv_category.text = getString(R.string.now_playing)
             }
         }
-
     }
-
 
     override fun onDataResponse(data: MovieResponse) {
         swipe_movie.isRefreshing = true
