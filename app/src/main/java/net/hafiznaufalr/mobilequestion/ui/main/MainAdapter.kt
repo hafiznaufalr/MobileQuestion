@@ -1,6 +1,7 @@
 package net.hafiznaufalr.mobilequestion.ui.main
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,6 +10,7 @@ import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.item_movie.view.*
 import net.hafiznaufalr.mobilequestion.R
 import net.hafiznaufalr.mobilequestion.model.Model.Movie
+import net.hafiznaufalr.mobilequestion.ui.detail.DetailActivity
 import net.hafiznaufalr.mobilequestion.util.Constant.BASE_IMAGE_URL
 
 class MainAdapter(private val context: Context,
@@ -29,6 +31,12 @@ class MainAdapter(private val context: Context,
         view.tv_release_date.text = data[position].releaseDate
         view.tv_overview.text = data [position].overview
         Glide.with(context).load(BASE_IMAGE_URL + data[position].posterPath).into(view.iv_poster)
+
+        view.setOnClickListener {
+            val intent = Intent(context, DetailActivity::class.java)
+            intent.putExtra("idMovie", data[position].id)
+            context.startActivity(intent)
+        }
 
     }
 

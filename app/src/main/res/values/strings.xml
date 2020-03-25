@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Kitabisa Mobile Question</string>
+    <string name="app_name">MovieApps</string>
     <string name="image_view_description">ImageView show Poster</string>
     <string name="tv_title">Movie Title</string>
     <string name="tv_release_date">2020 - 02 - 06</string>
@@ -10,6 +10,8 @@
     <string name="upcoming">Upcoming</string>
     <string name="top_rated">Top Rated</string>
     <string name="now_playing">Now Playing</string>
+    <string name="overview">Overview</string>
+    <string name="action_to_favorite">action to favorite</string>
 
     <string-array name="value">
         <item>Popular</item>
