@@ -1,3 +1,20 @@
 <resources>
-    <string name="app_name">Mobile Question</string>
+    <string name="app_name">Kitabisa Mobile Question</string>
+    <string name="image_view_description">ImageView show Poster</string>
+    <string name="tv_title">Movie Title</string>
+    <string name="tv_release_date">2020 - 02 - 06</string>
+    <string name="tv_overview">Lorem Ipsum Dolor Sit Amet Bohcap Mehikupinktos</string>
+    <string name="on_failed">Failed Load Data</string>
+    <string name="category">Category</string>
+    <string name="popular">Popular</string>
+    <string name="upcoming">Upcoming</string>
+    <string name="top_rated">Top Rated</string>
+    <string name="now_playing">Now Playing</string>
+
+    <string-array name="value">
+        <item>Popular</item>
+        <item>Upcoming</item>
+        <item>Top Rated</item>
+        <item>Now Playing</item>
+    </string-array>
 </resources>
