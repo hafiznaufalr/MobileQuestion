@@ -1,21 +1,25 @@
 package net.hafiznaufalr.mobilequestion.ui.detail
 
-import android.annotation.SuppressLint
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
+import android.view.View
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.activity_detail.*
 import net.hafiznaufalr.mobilequestion.R
 import net.hafiznaufalr.mobilequestion.db.MovieHelper
+import net.hafiznaufalr.mobilequestion.model.Model
 import net.hafiznaufalr.mobilequestion.model.Model.Movie
+import net.hafiznaufalr.mobilequestion.model.Model.Review
 import net.hafiznaufalr.mobilequestion.util.Constant
 
 class DetailActivity : AppCompatActivity(), DetailView {
     lateinit var presenter: DetailPresenter
     lateinit var movieHelper: MovieHelper
+    lateinit var adapter: DetailAdapter
+    private var listReview: MutableList<Review> = mutableListOf()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,14 +28,20 @@ class DetailActivity : AppCompatActivity(), DetailView {
         presenter = DetailPresenter(this)
         movieHelper = MovieHelper.getInstance(this)
         movieHelper.open()
+        adapter = DetailAdapter(this, listReview)
         getData()
+        prepareRv()
     }
 
+    private fun prepareRv() {
+        rv_reviews.adapter = adapter
+    }
 
 
     private fun getData() {
         val movieId = intent.getIntExtra("idMovie", 0)
         presenter.getDataDetailMovie(movieId)
+        presenter.getDataMovieReviews(movieId)
     }
 
     override fun onDataResponse(data: Movie) {
@@ -43,6 +53,16 @@ class DetailActivity : AppCompatActivity(), DetailView {
         prepareFavorite(data)
         displayFavoriteStatus(movieHelper.isMovieFavorited(data.id))
     }
+
+    override fun onDataReviewsResponse(data: Model.ReviewResponse) {
+        listReview.clear()
+        listReview.addAll(data.results)
+        adapter.notifyDataSetChanged()
+        if (listReview.isEmpty()){
+            tv_no_review.visibility = View.VISIBLE
+        }
+    }
+
 
     private fun prepareFavorite(data: Movie) {
         ivFavorite.setOnClickListener {

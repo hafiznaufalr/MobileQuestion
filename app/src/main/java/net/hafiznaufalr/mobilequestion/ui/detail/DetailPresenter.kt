@@ -20,6 +20,20 @@ class  DetailPresenter(private val detailView: DetailView) {
                 }
             }
         }
-
     }
+
+    fun getDataMovieReviews(movieId: Int) {
+        job = CoroutineScope(Dispatchers.IO).launch {
+            val data = dataSource.getReviewsMovie(movieId, Constant.API_KEY)
+            withContext(Dispatchers.Main) {
+                try {
+                    val response = data.await()
+                    detailView.onDataReviewsResponse(response)
+                } catch (throwable: Throwable) {
+                    detailView.onDataFailure(throwable)
+                }
+            }
+        }
+    }
+
 }
