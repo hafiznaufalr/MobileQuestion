@@ -30,7 +30,9 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/tv_category"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            tools:listitem="@layout/item_movie" />
+            tools:listitem="@layout/item_movie"
+            android:layout_marginBottom="50dp"
+            />
 
         <Button
             android:id="@+id/btn_category"
@@ -42,7 +44,6 @@
             android:textColor="@android:color/white" />
 
         <Spinner
-
             android:id="@+id/spinner_category"
             android:layout_width="match_parent"
             android:layout_height="10dp"

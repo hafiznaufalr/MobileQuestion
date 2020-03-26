@@ -31,6 +31,13 @@ class MainActivity : AppCompatActivity(), MainView {
         prepareSpinner()
         getData()
         performClick()
+        doRefresh()
+    }
+
+    private fun doRefresh() {
+        swipe_movie.setOnRefreshListener {
+            getData()
+        }
     }
 
     private fun performClick() {
@@ -90,16 +97,21 @@ class MainActivity : AppCompatActivity(), MainView {
         }
     }
 
-    override fun onDataResponse(data: MovieResponse) {
+    override fun showLoading() {
         swipe_movie.isRefreshing = true
-        listMovie.clear()
-        listMovie.addAll(data.results)
-        adapter.notifyDataSetChanged()
+    }
+
+    override fun hideLoading() {
         swipe_movie.isRefreshing = false
     }
 
+    override fun onDataResponse(data: MovieResponse) {
+        listMovie.clear()
+        listMovie.addAll(data.results)
+        adapter.notifyDataSetChanged()
+    }
+
     override fun onDataFailure(throwable: Throwable) {
-        swipe_movie.isRefreshing = false
         Log.e("TAG", throwable.message.toString())
         Toast.makeText(this, getString(R.string.on_failed), Toast.LENGTH_SHORT).show()
     }

@@ -6,64 +6,60 @@ import net.hafiznaufalr.mobilequestion.util.Constant
 
 class MainPresenter(private val mainView: MainView) {
     private val dataSource = NetworkService.create()
-    private var job: Job? = null
 
     fun getDataPopularMovies() {
-        job = CoroutineScope(Dispatchers.IO).launch {
+        mainView.showLoading()
+        GlobalScope.launch(Dispatchers.Main) {
             val data = dataSource.getPopularMovie(Constant.API_KEY)
-            withContext(Dispatchers.Main) {
-                try {
-                    val response = data.await()
-                    mainView.onDataResponse(response)
-                } catch (throwable: Throwable) {
-                    mainView.onDataFailure(throwable)
-                }
+            try {
+                val response = data.await()
+                mainView.onDataResponse(response)
+            } catch (throwable: Throwable) {
+                mainView.onDataFailure(throwable)
             }
         }
-
+        mainView.hideLoading()
     }
 
     fun getDataUpcomingMovies() {
-        job = CoroutineScope(Dispatchers.IO).launch {
+        mainView.showLoading()
+        GlobalScope.launch(Dispatchers.Main) {
             val data = dataSource.getUpcomingMovie(Constant.API_KEY)
-            withContext(Dispatchers.Main) {
-                try {
-                    val response = data.await()
-                    mainView.onDataResponse(response)
-                } catch (throwable: Throwable) {
-                    mainView.onDataFailure(throwable)
-                }
+            try {
+                val response = data.await()
+                mainView.onDataResponse(response)
+            } catch (throwable: Throwable) {
+                mainView.onDataFailure(throwable)
             }
         }
-
+        mainView.hideLoading()
     }
 
     fun getDataTopRatedMovies() {
-        job = CoroutineScope(Dispatchers.IO).launch {
+        mainView.showLoading()
+        GlobalScope.launch(Dispatchers.Main) {
             val data = dataSource.getTopRatedMovie(Constant.API_KEY)
-            withContext(Dispatchers.Main) {
-                try {
-                    val response = data.await()
-                    mainView.onDataResponse(response)
-                } catch (throwable: Throwable) {
-                    mainView.onDataFailure(throwable)
-                }
+            try {
+                val response = data.await()
+                mainView.onDataResponse(response)
+            } catch (throwable: Throwable) {
+                mainView.onDataFailure(throwable)
             }
         }
+        mainView.hideLoading()
     }
 
     fun getDataNowPlayingMovies() {
-        job = CoroutineScope(Dispatchers.IO).launch {
+        mainView.showLoading()
+        GlobalScope.launch(Dispatchers.Main) {
             val data = dataSource.getNowPlayingMovie(Constant.API_KEY)
-            withContext(Dispatchers.Main) {
-                try {
-                    val response = data.await()
-                    mainView.onDataResponse(response)
-                } catch (throwable: Throwable) {
-                    mainView.onDataFailure(throwable)
-                }
+            try {
+                val response = data.await()
+                mainView.onDataResponse(response)
+            } catch (throwable: Throwable) {
+                mainView.onDataFailure(throwable)
             }
         }
+        mainView.hideLoading()
     }
-
 }
