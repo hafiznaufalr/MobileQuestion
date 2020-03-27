@@ -10,33 +10,33 @@ import retrofit2.http.Query
 
 interface ApiService {
     @GET("movie/popular")
-    fun getPopularMovie(
+      fun getPopularMovie(
         @Query("api_key") apiKey: String
     ): Deferred<MovieResponse>
 
     @GET("movie/upcoming")
-    fun getUpcomingMovie(
+     fun getUpcomingMovie(
         @Query("api_key") apiKey: String
     ): Deferred<MovieResponse>
 
     @GET("movie/top_rated")
-    fun getTopRatedMovie(
+     fun getTopRatedMovie(
         @Query("api_key") apiKey: String
     ): Deferred<MovieResponse>
 
     @GET("movie/now_playing")
-    fun getNowPlayingMovie(
+     fun getNowPlayingMovie(
         @Query("api_key") apiKey: String
     ): Deferred<MovieResponse>
 
     @GET("movie/{movie_id}")
-    fun getDetailMovie(
+     fun getDetailMovie(
         @Path("movie_id") movieId: Int,
         @Query("api_key") apiKey: String
     ): Deferred<Movie>
 
     @GET("movie/{movie_id}/reviews")
-    fun getReviewsMovie(
+     fun getReviewsMovie(
         @Path("movie_id") movieId: Int,
         @Query("api_key") apiKey: String
     ): Deferred<ReviewResponse>

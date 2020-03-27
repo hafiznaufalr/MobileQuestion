@@ -3,26 +3,29 @@ package net.hafiznaufalr.mobilequestion.presenter
 import kotlinx.coroutines.Deferred
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 import net.hafiznaufalr.mobilequestion.model.Model
 import net.hafiznaufalr.mobilequestion.network.ApiService
 import net.hafiznaufalr.mobilequestion.network.NetworkService
 import net.hafiznaufalr.mobilequestion.ui.detail.DetailPresenter
 import net.hafiznaufalr.mobilequestion.ui.detail.DetailView
-import net.hafiznaufalr.mobilequestion.ui.main.MainPresenter
-import net.hafiznaufalr.mobilequestion.ui.main.MainView
 import net.hafiznaufalr.mobilequestion.util.Constant
 import org.junit.Before
 import org.junit.Test
-import org.mockito.Mock
-import org.mockito.Mockito
-import org.mockito.MockitoAnnotations
+import org.mockito.*
+import org.mockito.Mockito.`when`
+import org.mockito.Mockito.verify
+import retrofit2.Response
 
 class DetailPresenterTest {
     @Mock
     lateinit var detailView: DetailView
 
+    @Mock
+    private lateinit var dataSource : ApiService
+
     private lateinit var presenter: DetailPresenter
-    private lateinit var dataSource: ApiService
+
 
     @Before
     fun setUp(){
@@ -32,7 +35,7 @@ class DetailPresenterTest {
     }
 
     @Test
-    fun testDataDetailMovie(){
+    fun testDataMovieDetail(){
         var data: Deferred<Model.Movie>
         var response : Model.Movie
         val movieId = 570670
@@ -42,9 +45,10 @@ class DetailPresenterTest {
 
             presenter.getDataDetailMovie(movieId)
 
-            Mockito.verify(detailView).onDataResponse(response)
+            verify(detailView).onDataResponse(response)
         }
     }
+
 
     @Test
     fun testDataReviewsMovie(){
@@ -57,7 +61,7 @@ class DetailPresenterTest {
 
             presenter.getDataMovieReviews(movieId)
 
-            Mockito.verify(detailView).onDataReviewsResponse(response)
+            verify(detailView).onDataReviewsResponse(response)
         }
     }
 

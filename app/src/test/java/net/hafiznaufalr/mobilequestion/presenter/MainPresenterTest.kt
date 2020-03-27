@@ -19,8 +19,11 @@ class MainPresenterTest {
     @Mock
     lateinit var mainView: MainView
 
-    private lateinit var presenter: MainPresenter
+    @Mock
     private lateinit var dataSource: ApiService
+
+
+    private lateinit var presenter: MainPresenter
 
     @Before
     fun setUp(){
